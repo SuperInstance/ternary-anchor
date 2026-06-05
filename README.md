@@ -82,3 +82,12 @@ Part of the SuperInstance ternary fleet library. This is the *stability* layer �
 ## License
 
 MIT
+
+## See Also
+- **ternary-room** — related fleet coordination
+- **ternary-harbor** — related fleet coordination
+- **ternary-drift** — related fleet coordination
+- **ternary-beacon** — related fleet coordination
+- **ternary-compass** — related fleet coordination
+- **ternary-steward** — related fleet coordination
+
