@@ -87,6 +87,40 @@ Ternary Anchor provides fleet stability primitives in SuperInstance. In γ + η 
 
 See [ARCHITECTURE.md](https://github.com/SuperInstance/SuperInstance/blob/main/ARCHITECTURE.md) for fleet stability architecture.
 
+
+### Chains and Redundancy
+
+Multiple anchors can be linked in a `Chain`:
+
+```
+Chain { anchors: Vec<Anchor> }
+
+is_holding() → at least one anchor is Set
+collective_strength() → Σ individual strengths
+weakest_link() → min(individual strengths)
+```
+
+Chain evaluation: **O(N)** for N linked anchors. Chains provide N+1 redundancy: if one anchor drags, others hold.
+
+### Anchorage Zones
+
+An `Anchorage` designates pre-validated safe holding positions:
+
+```
+Anchorage { positions: Vec<Point2D>, max_capacity, current_count }
+is_available() → current_count < max_capacity
+dock(agent_id) → assigns nearest position — O(P) for P positions
+```
+
+### Environmental Wear Factors
+
+| Factor | Wear per tick/event |
+|-------|---------------------|
+| High latency (>200ms) | 2/tick |
+| Packet loss (>1%) | 5/tick |
+| Leader change | 20/event |
+| Network partition | 50/event |
+
 ## References
 
 1. Lynch, N. (1996). *Distributed Algorithms*. Morgan Kaufmann. Chapter 17: Failure Detectors.
